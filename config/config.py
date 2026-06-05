@@ -4,7 +4,7 @@ APP_VERSION = "1.0"
 SOURCE_LABEL = "Source: CDS PE v1.0"
 
 ### Window geometry ###
-WINDOW_MIN_WIDTH = 1100
+WINDOW_MIN_WIDTH = 1280
 WINDOW_MIN_HEIGHT = 720
 
 ### Colour palette (hex) ###
@@ -39,12 +39,12 @@ STEP_LABELS = ["Patient", "Data Entry", "Wells Score", "Recommendations"]
 BTN_BACK = "← Back"
 BTN_NEXT = "Next →"
 BTN_PROCEED = "Proceed to Recommendations →"
-BTN_SAVE_CONTINUE = "Save & Continue to Orders →"
+BTN_SAVE_CONTINUE = "Save && Continue to Orders →"
 BTN_ACCEPT_REC = "✓  Accept Recommendation"
 BTN_OVERRIDE_REC = "↺  Override / Choose Alternative"
 BTN_NEW_PATIENT = "+ New Patient"
 BTN_LOAD_PATIENT = "Load Selected Patient"
-BTN_CONFIRM_PATIENT = "Confirm & Start Assessment"
+BTN_CONFIRM_PATIENT = "Confirm && Start Assessment"
 
 ### page 0 - patient selection ###
 PATIENT_SELECT_TITLE = "Select or Register a Patient"
@@ -59,7 +59,7 @@ NO_PATIENTS_MSG = "No patients found in the database."
 ### page 1 data entry ###
 SECTION_VITAL_SIGNS = "VITAL SIGNS"
 SECTION_LABS_IMAGING = "LABS / IMAGING"
-SECTION_SYMPTOMS = "SYMPTOMS & RISK FACTORS"
+SECTION_SYMPTOMS = "SYMPTOMS && RISK FACTORS"
 SECTION_MISSING_DATA = "MISSING / INCOMPLETE DATA"
 SECTION_PE_HINTS = "PE PATTERN HINTS"
 
