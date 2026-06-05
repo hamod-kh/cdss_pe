@@ -1,4 +1,3 @@
-
 # main_window.py  –  Main application window
 #
 # Orchestrates the multi-page flow:
@@ -55,11 +54,11 @@ class MainWindow(QMainWindow):
         self.setMinimumSize(C.WINDOW_MIN_WIDTH, C.WINDOW_MIN_HEIGHT)
         self.setStyleSheet(APP_STYLESHEET)
 
-        # ── Singletons ────────────────────────────────────────────────────────
+        # Singletons
         self._db = DatabaseHandler()
         self._handler = InputHandler()
 
-        # ── Build central widget ──────────────────────────────────────────────
+        # Build central widget
         central = QWidget()
         self.setCentralWidget(central)
         root = QVBoxLayout(central)
@@ -73,7 +72,7 @@ class MainWindow(QMainWindow):
         self._stack = QStackedWidget()
         root.addWidget(self._stack, stretch=1)
 
-        # ── Create pages ──────────────────────────────────────────────────────
+        # create pages
         self._select_page = PatientSelectPage(self._db)
         self._data_page = DataEntryPage(self._handler)
         self._wells_page = WellsScorePage(self._handler)
@@ -84,7 +83,7 @@ class MainWindow(QMainWindow):
         self._stack.addWidget(self._wells_page)  # index 2
         self._stack.addWidget(self._rec_page)  # index 3
 
-        # ── Wire signals ──────────────────────────────────────────────────────
+        #  wire signals
         self._select_page.patient_ready.connect(self._on_patient_selected)
 
         self._data_page.go_next.connect(lambda: self._navigate_to(self.PAGE_WELLS))
@@ -96,11 +95,10 @@ class MainWindow(QMainWindow):
         self._rec_page.go_back.connect(lambda: self._navigate_to(self.PAGE_WELLS))
         self._rec_page.assessment_done.connect(self._on_assessment_done)
 
-        # ── Start on selection page ───────────────────────────────────────────
+        # start on selection page
         self._navigate_to(self.PAGE_SELECT, initial=True)
 
-    # ── Header bars ───────────────────────────────────────────────────────────
-
+    # header bars
     def _build_app_header(self) -> QFrame:
         bar = QFrame()
         bar.setStyleSheet(
@@ -161,7 +159,7 @@ class MainWindow(QMainWindow):
 
         return bar
 
-    # ── Navigation ────────────────────────────────────────────────────────────
+    # Navigation
 
     def _navigate_to(self, page_idx: int, initial: bool = False) -> None:
         current_idx = self._stack.currentIndex()
@@ -209,7 +207,7 @@ class MainWindow(QMainWindow):
         else:
             self._patient_context_lbl.setText("")
 
-    # ── Slots ─────────────────────────────────────────────────────────────────
+    #  Slots
 
     @pyqtSlot(object)
     def _on_patient_selected(self, patient: PatientData) -> None:
