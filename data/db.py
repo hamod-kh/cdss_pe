@@ -17,10 +17,8 @@ from data.data_model import PatientData
 from logger.logger import log_db_event, log_error
 from config.config import DB_FILE_NAME
 
-
 # database üath
 DB_PATH = os.path.join(os.path.dirname(__file__), DB_FILE_NAME)
-
 
 # sql schema
 _DDL = """
@@ -56,7 +54,6 @@ class DatabaseHandler:
     def __init__(self, db_path: str = DB_PATH) -> None:
         self.db_path = db_path
         self._init_db()
-
 
     def _connect(self) -> sqlite3.Connection:
         conn = sqlite3.connect(self.db_path, timeout=10)
@@ -120,21 +117,21 @@ class DatabaseHandler:
         try:
             with self._connect() as conn:
                 conn.execute(sql, {
-                    "mrn":                  patient.mrn,
-                    "first_name":           patient.first_name,
-                    "last_name":            patient.last_name,
-                    "age":                  patient.age,
-                    "sex":                  patient.sex,
-                    "triage":               patient.triage,
-                    "wells_score":          patient.wells_score,
-                    "wells_risk":           patient.wells_risk,
+                    "mrn": patient.mrn,
+                    "first_name": patient.first_name,
+                    "last_name": patient.last_name,
+                    "age": patient.age,
+                    "sex": patient.sex,
+                    "triage": patient.triage,
+                    "wells_score": patient.wells_score,
+                    "wells_risk": patient.wells_risk,
                     "recommendation_title": patient.recommendation_title,
-                    "physician_decision":   patient.physician_decision,
-                    "override_reason":      patient.override_reason,
-                    "physician_comments":   patient.physician_comments,
+                    "physician_decision": patient.physician_decision,
+                    "override_reason": patient.override_reason,
+                    "physician_comments": patient.physician_comments,
                     "assessment_timestamp": patient.assessment_timestamp,
-                    "last_updated":         patient.last_updated,
-                    "full_data_json":       full_json,
+                    "last_updated": patient.last_updated,
+                    "full_data_json": full_json,
                 })
             log_db_event("SAVE", f"MRN={patient.mrn} | Risk={patient.wells_risk}")
             return True
@@ -209,6 +206,36 @@ class DatabaseHandler:
         except Exception as exc:
             log_error("patient_exists", exc)
             return False
+
+    def assessment_history_full(self, mrn: str) -> list[dict]:
+        sql = """
+        SELECT assessment_timestamp, wells_score, wells_risk,
+               recommendation_title, physician_decision,
+               physician_comments, full_data_json
+        FROM patients
+        WHERE mrn = ?
+        ORDER BY assessment_timestamp DESC
+        """
+        try:
+            with self._connect() as conn:
+                rows = conn.execute(sql, (mrn,)).fetchall()
+            result = []
+            for row in rows:
+                try:
+                    record = json.loads(row["full_data_json"])
+                except Exception:
+                    record = {}
+                record["assessment_timestamp"] = row["assessment_timestamp"]
+                record["wells_score"] = row["wells_score"]
+                record["wells_risk"] = row["wells_risk"]
+                record["recommendation_title"] = row["recommendation_title"]
+                record["physician_decision"] = row["physician_decision"]
+                record["physician_comments"] = row["physician_comments"]
+                result.append(record)
+            return result
+        except Exception as exc:
+            log_error("assessment_history_full", exc)
+            return []
 
     def assessment_history(self, mrn: str) -> list[dict]:
         """All assessments for one MRN, newest first."""
