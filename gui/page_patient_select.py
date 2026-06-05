@@ -33,7 +33,6 @@ class PatientSelectPage(QWidget):
         self._build_ui()
 
     # build ui
-
     def _build_ui(self) -> None:
         root = QHBoxLayout(self)
         root.setContentsMargins(24, 24, 24, 24)
@@ -43,7 +42,6 @@ class PatientSelectPage(QWidget):
         root.addWidget(self._build_right_panel(), stretch=2)
 
     # left panel: existing patients
-
     def _build_left_panel(self) -> QFrame:
         card = make_card()
         layout = QVBoxLayout(card)
@@ -69,25 +67,35 @@ class PatientSelectPage(QWidget):
         self._table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self._table.setAlternatingRowColors(True)
         self._table.verticalHeader().setVisible(False)
-        self._table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        header = self._table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
         self._table.itemSelectionChanged.connect(self._on_row_selected)
         self._table.doubleClicked.connect(self._on_load_patient)
         layout.addWidget(self._table)
 
-        # load button
+        # load + history buttons
+        btn_row = QHBoxLayout()
+
         self._load_btn = make_primary_button(C.BTN_LOAD_PATIENT)
         self._load_btn.setEnabled(False)
         self._load_btn.clicked.connect(self._on_load_patient)
-        layout.addWidget(self._load_btn)
+        btn_row.addWidget(self._load_btn)
 
-        hint = h_muted("Double-click a row to load a patient, or use the button above.")
+        self._history_btn = make_secondary_button("View Patient History")
+        self._history_btn.setEnabled(False)
+        self._history_btn.clicked.connect(self._on_view_history)
+        btn_row.addWidget(self._history_btn)
+
+        layout.addLayout(btn_row)
+
+        hint = h_muted("Double-click a row to load a patient, or use the buttons above.")
         hint.setWordWrap(True)
         layout.addWidget(hint)
 
         return card
 
     # right panel: new patients
-
     def _build_right_panel(self) -> QFrame:
         card = make_card()
         layout = QVBoxLayout(card)
@@ -142,7 +150,7 @@ class PatientSelectPage(QWidget):
 
         return card
 
-    # # data loading
+    # data loading
 
     def refresh(self) -> None:
         """(Re)populate the table from the database."""
@@ -190,10 +198,11 @@ class PatientSelectPage(QWidget):
         self._populate_table(filtered)
 
     # ------------ handlers ------------
-
     def _on_row_selected(self) -> None:
         rows = self._table.selectedItems()
-        self._load_btn.setEnabled(bool(rows))
+        has_selection = bool(rows)
+        self._load_btn.setEnabled(has_selection)
+        self._history_btn.setEnabled(has_selection)
         if rows:
             self._selected_mrn = self._table.item(self._table.currentRow(), 0).text()
 
@@ -242,6 +251,23 @@ class PatientSelectPage(QWidget):
             triage=self._triage_combo.currentText(),
         )
         self.patient_ready.emit(patient)
+
+    def _on_view_history(self) -> None:
+        if not self._selected_mrn:
+            return
+        patient_name = "—"
+        for p in self._all_patients:
+            if p.get("mrn") == self._selected_mrn:
+                patient_name = p.get("full_name", "—").strip()
+                break
+        from gui.patient_history_dialog import PatientHistoryDialog
+        dlg = PatientHistoryDialog(
+            mrn=self._selected_mrn,
+            patient_name=patient_name,
+            db=self._db,
+            parent=self,
+        )
+        dlg.exec()
 
     def _show_error(self, msg: str) -> None:
         QMessageBox.critical(self, "Input Error", msg)
