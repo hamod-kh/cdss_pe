@@ -38,7 +38,6 @@ class DataEntryPage(QWidget):
         self._build_ui()
 
     # build ui
-
     def _build_ui(self) -> None:
         root = QVBoxLayout(self)
         root.setContentsMargins(0, 0, 0, 0)
@@ -59,7 +58,7 @@ class DataEntryPage(QWidget):
 
         content_layout.addWidget(self._build_left_column(), stretch=2)
         content_layout.addWidget(self._build_middle_column(), stretch=3)
-        content_layout.addWidget(self._build_right_column(), stretch=2)
+        # content_layout.addWidget(self._build_right_column(), stretch=2)
 
         scroll.setWidget(content)
         root.addWidget(scroll, stretch=1)
@@ -68,64 +67,88 @@ class DataEntryPage(QWidget):
         root.addWidget(self._build_footer())
 
     # patient header
-
     def _build_patient_header(self) -> QFrame:
         frame = QFrame()
-        frame.setObjectName("card")
-        frame.setStyleSheet(
-            f"background: white; border-bottom: 2px solid {C.COLOR_BORDER}; border-radius: 0px;"
-        )
+        frame.setStyleSheet(f"background: white;")
         layout = QHBoxLayout(frame)
-        layout.setContentsMargins(20, 12, 20, 12)
+        layout.setContentsMargins(20, 20, 20, 20)
+        layout.setSpacing(30)
 
         # avatar
         avatar = QLabel("👤")
-        avatar.setFixedSize(44, 44)
+        avatar.setFixedSize(40, 40)
         avatar.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        avatar.setStyleSheet(
-            "font-size: 22px; border: 2px solid #DEE2E6; border-radius: 22px;"
-        )
+        avatar.setStyleSheet("font-size: 20px;")
         layout.addWidget(avatar)
 
-        self._name_lbl = QLabel("—")
-        self._mrn_lbl = QLabel("MRN —")
-        self._age_lbl = QLabel("Age —")
-        self._sex_lbl = QLabel("Sex —")
-
-        for lbl in (self._name_lbl,):
-            f = QFont()
-            f.setBold(True)
-            f.setPointSize(14)
-            lbl.setFont(f)
-
+        # name
+        self._name_lbl = self._header_field("Patient", "—")
         layout.addWidget(self._name_lbl)
-        layout.addSpacing(20)
+
+        self._mrn_lbl = self._header_field("MRN", "—")
+        self._age_lbl = self._header_field("Age", "—")
+        self._sex_lbl = self._header_field("Sex", "—")
 
         for lbl in (self._mrn_lbl, self._age_lbl, self._sex_lbl):
             layout.addWidget(lbl)
-            layout.addSpacing(12)
 
         # triage
-        triage_lbl = QLabel("Triage")
-        triage_lbl.setStyleSheet(f"color: {C.COLOR_TEXT_MUTED}; font-size: 11px;")
+        triage_w = QWidget()
+        triage_layout = QVBoxLayout(triage_w)
+        triage_layout.setContentsMargins(0, 0, 0, 0)
+        triage_layout.setSpacing(1)
+        triage_top = QLabel("Triage")
+        triage_top.setStyleSheet(f"font-weight: 700; font-size: 11px; color: {C.COLOR_TEXT_MUTED};")
         self._triage_combo = QComboBox()
         self._triage_combo.addItems(C.TRIAGE_OPTIONS)
+        self._triage_combo.setStyleSheet(
+            "border: 1px solid #CED4DA; border-radius: 4px; "
+            "background: white; font-size: 13px; padding: 1px 6px; color: #212529;"
+        )
+        self._triage_combo.setFixedHeight(24)
         self._triage_combo.currentTextChanged.connect(
             lambda t: self._h.stage_update("triage", t)
         )
-        layout.addWidget(triage_lbl)
-        layout.addWidget(self._triage_combo)
+        triage_layout.addWidget(triage_top)
+        triage_layout.addWidget(self._triage_combo)
+        layout.addWidget(triage_w)
 
         layout.addStretch()
 
+        # PE risk, original inline style
         pe_lbl = QLabel(C.PE_RISK_LABEL)
         pe_lbl.setStyleSheet(f"color: {C.COLOR_TEXT_MUTED}; font-size: 11px;")
         layout.addWidget(pe_lbl)
-
         self._risk_badge = make_risk_badge("—")
         layout.addWidget(self._risk_badge)
 
-        return frame
+        # bottom divider
+        divider = QFrame()
+        divider.setFrameShape(QFrame.Shape.HLine)
+        divider.setFixedHeight(1)
+        divider.setStyleSheet(f"background: {C.COLOR_BORDER}; border: none;")
+
+        wrapper = QFrame()
+        w_layout = QVBoxLayout(wrapper)
+        w_layout.setContentsMargins(0, 0, 0, 0)
+        w_layout.setSpacing(0)
+        w_layout.addWidget(frame)
+        w_layout.addWidget(divider)
+        return wrapper
+
+    def _header_field(self, label: str, value: str) -> QWidget:
+        """A small vertical stack: bold label on top, value below."""
+        w = QWidget()
+        layout = QVBoxLayout(w)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(1)
+        lbl = QLabel(label)
+        lbl.setStyleSheet(f"font-weight: 700; font-size: 11px; color: {C.COLOR_TEXT_MUTED};")
+        val = QLabel(value)
+        val.setStyleSheet("font-size: 13px;")
+        layout.addWidget(lbl)
+        layout.addWidget(val)
+        return w
 
     # left: vitals and labs
     def _build_left_column(self) -> QWidget:
@@ -216,7 +239,7 @@ class DataEntryPage(QWidget):
         layout.setContentsMargins(14, 12, 14, 12)
         layout.setSpacing(8)
 
-        # Header row with column labels
+        # header row with column labels
         header = QHBoxLayout()
         header.addWidget(section_title_label(C.SECTION_SYMPTOMS))
         header.addStretch()
@@ -249,14 +272,13 @@ class DataEntryPage(QWidget):
         return card
 
     # right panel: missing data and hints
-
     def _build_right_column(self) -> QWidget:
         col = QWidget()
         layout = QVBoxLayout(col)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(12)
 
-        # Missing / incomplete
+        # missing / incomplete
         self._missing_card = make_warning_card()
         m_layout = QVBoxLayout(self._missing_card)
         m_layout.setContentsMargins(12, 10, 12, 10)
@@ -282,7 +304,7 @@ class DataEntryPage(QWidget):
 
         layout.addWidget(self._missing_card)
 
-        # Hints
+        # hints
         self._hints_card = make_hint_card()
         h_layout = QVBoxLayout(self._hints_card)
         h_layout.setContentsMargins(12, 10, 12, 10)
@@ -313,41 +335,48 @@ class DataEntryPage(QWidget):
         return col
 
     # footer
+    def _build_footer(self) -> QWidget:
+        wrapper = QWidget()
+        wrapper_layout = QVBoxLayout(wrapper)
+        wrapper_layout.setContentsMargins(0, 0, 0, 0)
+        wrapper_layout.setSpacing(0)
 
-    def _build_footer(self) -> QFrame:
+        # divider line
+        divider = QFrame()
+        divider.setFrameShape(QFrame.Shape.HLine)
+        divider.setFixedHeight(1)
+        divider.setStyleSheet(f"background: {C.COLOR_BORDER}; border: none;")
+        wrapper_layout.addWidget(divider)
+
+        # button bar, no border, just background + padding
         bar = QFrame()
-        bar.setStyleSheet(
-            f"background: {C.COLOR_PANEL_BG}; border-top: 1px solid {C.COLOR_BORDER};"
-        )
+        bar.setStyleSheet(f"background: {C.COLOR_PANEL_BG};")
         layout = QHBoxLayout(bar)
         layout.setContentsMargins(20, 10, 20, 10)
-
         layout.addWidget(h_muted("All times local"))
         layout.addStretch()
         layout.addWidget(h_muted(C.SOURCE_LABEL))
-
         layout.addSpacing(20)
         back_btn = make_secondary_button(C.BTN_BACK)
         back_btn.clicked.connect(self._on_back)
         layout.addWidget(back_btn)
-
-        next_btn = make_primary_button(C.BTN_NEXT)
+        next_btn = make_secondary_button(C.BTN_NEXT)
         next_btn.clicked.connect(self._on_next)
         layout.addWidget(next_btn)
+        wrapper_layout.addWidget(bar)
 
-        return bar
+        return wrapper
 
-    # Populate (called when page is loaded/revisited)
-
+    # populate (called when page is loaded/revisited)
     def populate(self) -> None:
         """Refresh all widgets from the committed PatientData."""
         d = self._h.current
 
         # header
-        self._name_lbl.setText(d.full_name or "—")
-        self._mrn_lbl.setText(f"MRN  {d.mrn}")
-        self._age_lbl.setText(f"Age  {d.age} y" if d.age else "Age —")
-        self._sex_lbl.setText(f"Sex  {d.sex}" if d.sex else "Sex —")
+        self._name_lbl.layout().itemAt(1).widget().setText(d.full_name or "—")
+        self._mrn_lbl.layout().itemAt(1).widget().setText(d.mrn or "—")
+        self._age_lbl.layout().itemAt(1).widget().setText(f"{d.age} y" if d.age else "—")
+        self._sex_lbl.layout().itemAt(1).widget().setText(d.sex or "—")
 
         if d.triage and self._triage_combo:
             idx = self._triage_combo.findText(d.triage)
@@ -370,12 +399,14 @@ class DataEntryPage(QWidget):
         for key, grp in self._symptom_groups.items():
             grp.set_value(getattr(d, key, "Unknown"))
 
-        self._update_missing_panel()
-        self._update_hints_panel()
+        if hasattr(self, '_missing_labels'):
+            self._update_missing_panel()
+        if hasattr(self, '_hint_labels'):
+            self._update_hints_panel()
+
         self._update_risk_badge()
 
-    # Dynamic panel updates
-
+    # dynamic panel updates
     def _update_missing_panel(self) -> None:
         missing = self._h.current.missing_critical_fields()
         for i, lbl in enumerate(self._missing_labels):
@@ -397,33 +428,48 @@ class DataEntryPage(QWidget):
                 lbl.setVisible(False)
 
         if hints:
-            self._pattern_suggestion.setText(
-                "Pattern suggests: Increased likelihood of PE"
-            )
+            self._pattern_suggestion.setText("Pattern suggests: Increased likelihood of PE")
         else:
             self._pattern_suggestion.setText("")
 
     def _update_risk_badge(self) -> None:
         risk = self._h.current.wells_risk
         self._risk_badge.setText(risk if risk else "—")
+
         if "HIGH" in risk:
-            self._risk_badge.setObjectName("badge_high")
+            colour = C.COLOR_HIGH_RISK
         elif "MODERATE" in risk:
-            self._risk_badge.setObjectName("badge_moderate")
+            colour = C.COLOR_MODERATE
         elif "LOW" in risk:
-            self._risk_badge.setObjectName("badge_low")
+            colour = C.COLOR_LOW_RISK
         else:
-            self._risk_badge.setObjectName("badge_unknown")
-        # Force style re-evaluation
-        self._risk_badge.style().unpolish(self._risk_badge)
-        self._risk_badge.style().polish(self._risk_badge)
+            colour = "#6C757D"
 
-    # bavigation
+        self._risk_badge.setStyleSheet(
+            f"background-color: {colour}; color: white; border-radius: 6px; "
+            f"padding: 4px 12px; font-weight: 700; font-size: 13px;"
+        )
 
+    # navigation
     def _on_next(self) -> None:
         self._h.commit()
-        self._update_missing_panel()
-        self._update_hints_panel()
+        if hasattr(self, '_missing_labels'):
+            self._update_missing_panel()
+        if hasattr(self, '_hint_labels'):
+            self._update_hints_panel()
+
+        # sync overlapping symptom → Wells criteria fields
+        d = self._h.current
+        self._h.stage_update("hemoptysis_w", d.hemoptysis)
+        self._h.stage_update("malignancy_w", d.malignancy)
+        self._h.stage_update("prev_dvt_pe", d.prior_dvt_pe)
+        self._h.stage_update("immobilization", d.recent_surgery)
+        self._h.stage_update("hr_over_100",
+                             "Yes" if (d.hr.isdigit() and int(d.hr) > 100) else
+                             "No" if d.hr else "No"
+                             )
+        self._h.commit()
+
         self.go_next.emit()
 
     def _on_back(self) -> None:
