@@ -12,7 +12,6 @@ def main() -> None:
 
     app = QApplication(sys.argv)
     app.setApplicationName("CDS PE")
-    app.setOrganizationName("University CDSS Project")
 
     log = get_logger()
     log.info("Application starting…")
