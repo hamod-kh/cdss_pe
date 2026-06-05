@@ -33,7 +33,7 @@ QPushButton {{
 QPushButton#primary {{
     background-color: {C.COLOR_PRIMARY};
     color: white;
-    border: none;
+    border: 2px solid {C.COLOR_PRIMARY};
 }}
 QPushButton#primary:hover  {{ background-color: {C.COLOR_PRIMARY_DARK}; }}
 QPushButton#primary:pressed{{ background-color: #064a4d; }}
@@ -83,9 +83,19 @@ QComboBox {{
     padding: 5px 8px;
     font-size: 13px;
     background-color: white;
+    color: #212529;
 }}
 QComboBox:focus {{ border-color: {C.COLOR_PRIMARY}; }}
 QComboBox::drop-down {{ border: none; }}
+QComboBox QAbstractItemView {{
+    background-color: white;
+    color: #212529;
+    border: 1.5px solid {C.COLOR_BORDER};
+    border-radius: 5px;
+    selection-background-color: {C.COLOR_LIGHT_TEAL};
+    selection-color: #212529;
+    padding: 4px;
+}}
 
 /* ── Cards / panels ── */
 QFrame#card {{
@@ -126,6 +136,10 @@ QHeaderView::section {{
     font-weight: 600;
     border: none;
     border-bottom: 1.5px solid {C.COLOR_BORDER};
+    border-right: 1px solid {C.COLOR_BORDER};
+}}
+QHeaderView::section:last {{
+    border-right: none;
 }}
 
 /* ── Risk badges ── */
@@ -329,7 +343,7 @@ class StepIndicator(QWidget):
 
         self._layout = QHBoxLayout(self)
         self._layout.setContentsMargins(0, 8, 0, 8)
-        self._layout.setSpacing(0)
+        self._layout.setSpacing(2)
 
         self._circles: list[QLabel] = []
         self._labels:  list[QLabel] = []
