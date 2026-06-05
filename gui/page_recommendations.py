@@ -58,7 +58,6 @@ class RecommendationsPage(QWidget):
         root.addWidget(self._build_footer())
 
     # left panel
-
     def _build_left_panel(self) -> QFrame:
         card = make_card()
         layout = QVBoxLayout(card)
@@ -181,12 +180,20 @@ class RecommendationsPage(QWidget):
         return card
 
     # footer
+    def _build_footer(self) -> QWidget:
+        wrapper = QWidget()
+        wrapper_layout = QVBoxLayout(wrapper)
+        wrapper_layout.setContentsMargins(0, 0, 0, 0)
+        wrapper_layout.setSpacing(0)
 
-    def _build_footer(self) -> QFrame:
+        divider = QFrame()
+        divider.setFrameShape(QFrame.Shape.HLine)
+        divider.setFixedHeight(1)
+        divider.setStyleSheet(f"background: {C.COLOR_BORDER}; border: none;")
+        wrapper_layout.addWidget(divider)
+
         bar = QFrame()
-        bar.setStyleSheet(
-            f"background: {C.COLOR_PANEL_BG}; border-top: 1px solid {C.COLOR_BORDER};"
-        )
+        bar.setStyleSheet(f"background: {C.COLOR_PANEL_BG};")
         layout = QHBoxLayout(bar)
         layout.setContentsMargins(20, 10, 20, 10)
         layout.addWidget(h_muted("All times local"))
@@ -198,11 +205,12 @@ class RecommendationsPage(QWidget):
         back_btn.clicked.connect(self._on_back)
         layout.addWidget(back_btn)
 
-        self._save_btn = make_primary_button(C.BTN_SAVE_CONTINUE)
+        self._save_btn = make_secondary_button(C.BTN_SAVE_CONTINUE)
         self._save_btn.clicked.connect(self._on_save)
         layout.addWidget(self._save_btn)
 
-        return bar
+        wrapper_layout.addWidget(bar)
+        return wrapper
 
     # pipulate
 
