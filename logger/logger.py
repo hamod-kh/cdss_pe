@@ -7,11 +7,9 @@
 import logging
 import logging.handlers
 import os
-from datetime import datetime
-from config import LOG_FILE_NAME, LOG_DATE_FORMAT
 
+from config.config import LOG_DATE_FORMAT, LOG_FILE_NAME
 
-# ── Module-level logger instance ──────────────────────────────────────────────
 
 _logger: logging.Logger | None = None
 
@@ -46,7 +44,7 @@ def _create_logger() -> logging.Logger:
     fh.setFormatter(formatter)
     logger.addHandler(fh)
 
-    # ── Console handler ──
+    # console handler
     ch = logging.StreamHandler()
     ch.setLevel(logging.INFO)
     ch.setFormatter(formatter)
@@ -58,7 +56,7 @@ def _create_logger() -> logging.Logger:
     return logger
 
 
-# ── Convenience helpers ───────────────────────────────────────────────────────
+# helper functions
 
 def log_session_start(mrn: str, patient_name: str) -> None:
     log = get_logger()
@@ -90,7 +88,7 @@ def log_recommendation(mrn: str, rec_title: str, strength: str) -> None:
 
 
 def log_physician_decision(
-    mrn: str, decision: str, override_reason: str = "", comments: str = ""
+        mrn: str, decision: str, override_reason: str = "", comments: str = ""
 ) -> None:
     log = get_logger()
     log.info(
