@@ -94,7 +94,6 @@ class ScoreGauge(QWidget):
 
 
 # WellsScorePage
-
 class WellsScorePage(QWidget):
     """
     Page 2 – presents the seven Wells criteria as tri-state button groups,
@@ -191,7 +190,6 @@ class WellsScorePage(QWidget):
         return card
 
     # breakdown card
-
     def _build_breakdown_card(self) -> QFrame:
         card = make_card()
         layout = QVBoxLayout(card)
@@ -263,40 +261,52 @@ class WellsScorePage(QWidget):
         return card
 
     # footer
+    def _build_footer(self) -> QWidget:
+        wrapper = QWidget()
+        wrapper_layout = QVBoxLayout(wrapper)
+        wrapper_layout.setContentsMargins(0, 0, 0, 0)
+        wrapper_layout.setSpacing(0)
 
-    def _build_footer(self) -> QFrame:
+        # divider line
+        divider = QFrame()
+        divider.setFrameShape(QFrame.Shape.HLine)
+        divider.setFixedHeight(1)
+        divider.setStyleSheet(f"background: {C.COLOR_BORDER}; border: none;")
+        wrapper_layout.addWidget(divider)
+
+        # button bar, no border, just background + padding
         bar = QFrame()
-        bar.setStyleSheet(
-            f"background: {C.COLOR_PANEL_BG}; border-top: 1px solid {C.COLOR_BORDER};"
-        )
+        bar.setStyleSheet(f"background: {C.COLOR_PANEL_BG};")
         layout = QHBoxLayout(bar)
         layout.setContentsMargins(20, 10, 20, 10)
         layout.addWidget(h_muted("All times local"))
         layout.addStretch()
         layout.addWidget(h_muted(C.SOURCE_LABEL))
         layout.addSpacing(20)
-
         back_btn = make_secondary_button(C.BTN_BACK)
         back_btn.clicked.connect(self._on_back)
         layout.addWidget(back_btn)
+        next_btn = make_secondary_button(C.BTN_NEXT)
+        next_btn.clicked.connect(self._on_next)
+        layout.addWidget(next_btn)
+        wrapper_layout.addWidget(bar)
 
-        self._proceed_btn = make_primary_button(C.BTN_PROCEED)
-        self._proceed_btn.clicked.connect(self._on_next)
-        layout.addWidget(self._proceed_btn)
-
-        return bar
+        return wrapper
 
     # populate
-
     def populate(self) -> None:
-        """Sync criteria toggles from committed data and recompute score."""
-        d = self._h.current
-        for key, grp in self._criteria_groups.items():
-            grp.set_value(getattr(d, key, "Unknown"))
-        self._recompute()
+        try:
+            d = self._h.current
+            for key, grp in self._criteria_groups.items():
+                grp.set_value(getattr(d, key, "Unknown"))
+            self._recompute()
+        except Exception as e:
+            from logger import log_error
+            log_error("WellsScorePage.populate", e)
+            import traceback
+            traceback.print_exc()
 
     # score computation
-
     def _on_criterion_changed(self, key: str, value: str) -> None:
         self._h.stage_update(key, value)
         # Temporarily commit criteria to allow score preview
@@ -305,7 +315,7 @@ class WellsScorePage(QWidget):
 
         # Compute live preview by merging staged into committed
         merged = {**saved_committed, **staged_copy}
-        from data_model import PatientData
+        from data.data_model import PatientData
         preview = PatientData.from_dict(merged)
 
         score = 0.0
