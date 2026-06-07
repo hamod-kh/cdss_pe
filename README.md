@@ -18,10 +18,13 @@ The application follows a four-step assessment process:
 
 **Left panel:** Registered Patients
 <p align="center">
-![alt text](image-2.png)
+<img src="Step1_Left panel.png" alt="Patient Selection" width="700">
 </p>
 
-••	Type a name or MRN in the search box to filter the patient table in real time
-•	Click a row to select a patient, then click Load Selected Patient or double-click the row to proceed
-•	Risk levels in the table are color-coded: red for HIGH, orange for MODERATE, green for LOW
-•	Click View Patient History to open the assessment history dialog for the selected patient
+- Type a name or MRN in the search box to filter the patient table in real time.
+- Click a row to select a patient, then click **Load Selected Patient** or double-click the row to proceed.
+- Risk levels in the table are color-coded:
+  - 🔴 **HIGH** (red)
+  - 🟠 **MODERATE** (orange)
+  - 🟢 **LOW** (green)
+- Click **View Patient History** to open the assessment history dialog for the selected patient.
