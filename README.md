@@ -87,3 +87,117 @@ The application follows a four-step assessment process:
 <p align="center">
 <img src="Picture6.png" alt="Patient Selection5" width="500">
 </p>
+### Step 3: Data Entry (Symptoms and Risk Factors)
+
+**What it does:** Enter the patient's clinical data including vitals, laboratory results, and symptoms.
+
+**Instructions:**
+
+- For each of the eight clinical items, select **Yes**, **No**, or **Unknown** using the tri-state button group.
+- Items include: dyspnea, pleuritic chest pain, hemoptysis, leg swelling, recent surgery or immobilization, prior DVT/PE, hormone therapy or pregnancy, active malignancy.
+
+---
+
+### Automatic Field Carry-Forward
+
+When you click **Next**, the following symptom fields are automatically mapped to the corresponding Wells criteria on the next page:
+
+- Hemoptysis → Wells hemoptysis criterion  
+- Malignancy → Wells malignancy criterion  
+- Prior DVT/PE → Wells previous DVT/PE criterion  
+- Recent surgery → Wells immobilization criterion  
+- HR > 100 bpm (based on entered HR value) → Wells heart rate criterion  
+
+---
+
+## Step 4: Wells Score
+
+**What it does:** Calculate the Wells Score from the seven clinical criteria and display the risk level.
+
+### Left Panel: Wells Criteria
+<p align="center">
+<img src="Picture7.png" alt="Patient Selection6" width="500">
+</p>
+### Step 4: Wells Score
+
+**What it does:** Calculate the Wells Score from the seven clinical criteria and display the risk level.
+
+### Wells Criteria
+
+- Seven criteria are displayed with their point values.
+- For each criterion, select **No**, **Yes**, or **Unknown**.
+- Criteria pre-populated from Step 1 will already be set when this page loads.
+- The score updates in real time as you change any selection.
+
+---
+
+### Right Panel: Score Breakdown
+<p align="center">
+<img src="Picture8.png" alt="Patient Selection7" width="500">
+</p>
+### Wells Score Results
+
+**Display features:**
+
+- A circular arc gauge displays the current score and risk level with color coding.
+- The breakdown table shows criteria total, adjustment, final Wells score, and risk classification.
+- A progress bar shows data completeness as a percentage of all key assessment fields filled.
+
+---
+
+### Risk Thresholds
+| Wells Score | Risk Level     |
+|------------|----------------|
+| ≤ 4.0      | LOW RISK       |
+| 4.5 – 6.0  | MODERATE RISK  |
+| > 6.0      | HIGH RISK      |
+Click **Next →** to commit the score and proceed. The Wells score and risk level are saved to the patient record at this point.
+
+---
+
+## Step 4: Recommendations
+
+**What it does:** Display the evidence-based recommendation and record the physician's clinical decision.
+
+### Left Panel: Recommendation
+<p align="center">
+<img src="Picture9.png" alt="Patient Selection8" width="500">
+</p>
+
+**Instructions:**
+
+- Displays the recommended next step, recommendation strength, clinical rationale, and a list of suggested actions.
+- Suggested actions are shown as checkboxes for the clinician to work through.
+- Content is determined automatically by the risk level calculated in Step 2.
+### Recommendation Logic by Risk Level
+
+The following table summarizes the automated clinical decision logic based on the calculated Wells risk level:
+
+<br>
+
+| Risk Level    | Recommended Action |
+|--------------|--------------------|
+| HIGH RISK     | Order D-dimer; if positive or unavailable proceed to CTPA |
+| MODERATE RISK | Order D-dimer; if negative PE excluded; if positive proceed to CTPA |
+| LOW RISK      | Apply PERC rule; if positive order D-dimer; proceed to CTPA only if elevated |
+
+**Right Panel:** Plan Decision
+<p align="center">
+<img src="Picture10.png" alt="Patient Selection9" width="500">
+</p>
+**Instructions:**
+
+- Click ✓ **Accept Recommendation** to record agreement with the system recommendation.
+- Note: Once you click ✓ **Accept Recommendation**, the Override button is disabled for the current session. If you need to change your decision, click ← **Back** to return to the Wells Score page and then proceed forward again to reset the Recommendations page.
+- Click ↺ **Override / Choose Alternative** to reveal the override reason dropdown — a reason must be selected before saving.
+- Add any additional clinical context in the Physician Notes free-text field.
+- Click **Save & Continue to Orders →** to finalize.
+
+The system validates that a decision has been made and, if overriding, that a reason has been selected.
+<p align="center">
+<img src="Picture11.png" alt="Patient Selection10" width="500">
+</p>
+- On success, a confirmation dialog shows the saved score and recommendation, and the application returns to the patient selection page.
+<p align="center">
+<img src="Picture12.png" alt="Patient Selection11" width="500">
+</p>
