@@ -18,7 +18,7 @@ The application follows a four-step assessment process:
 
 **Left panel:** Registered Patients
 <p align="center">
-<img src="Step1_Left panel.png" alt="Patient Selection" width="700">
+<img src="Step1_Left panel.png" alt="Patient Selection" width="600">
 </p>
 
 **Instructions:**
@@ -30,7 +30,7 @@ The application follows a four-step assessment process:
 
 **Right panel:** Register New Patient
 <p align="center">
-<img src="Register_New_Patient.png" alt="Patient Selection1" width="700">
+<img src="Register_New_Patient.png" alt="Patient Selection1" width="600">
 </p>
 
 ### Step 1: Patient Selection
@@ -51,7 +51,7 @@ The application follows a four-step assessment process:
 
 **Patient header bar**
 <p align="center">
-<img src="Patient_header.png" alt="Patient Selection2" width="700">
+<img src="Patient_header.png" alt="Patient Selection2" width="500">
 </p>
 ### Step 2: Data Entry
 
@@ -110,7 +110,7 @@ When you click **Next**, the following symptom fields are automatically mapped t
 
 ---
 
-## Step 4: Wells Score
+## Step 3: Wells Score
 
 **What it does:** Calculate the Wells Score from the seven clinical criteria and display the risk level.
 
