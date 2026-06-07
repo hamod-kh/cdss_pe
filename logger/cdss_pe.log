@@ -3,3 +3,28 @@
 2026-06-07 18:22:50  [INFO    ]  ======================================================================
 2026-06-07 18:22:50  [INFO    ]  Application starting…
 2026-06-07 18:22:50  [INFO    ]  DATABASE | INIT | Database ready at C:\Users\Taki Djebbar\Documents\Data Science S1\CDSS\cdss_pe\data\cdss_pe.db
+2026-06-07 18:24:11  [INFO    ]  SESSION START | MRN=2326 | Patient='Taki Dje'
+2026-06-07 18:24:11  [INFO    ]  NAVIGATION | FORWARD | Step 0 → 1
+2026-06-07 18:30:31  [INFO    ]  NAVIGATION | FORWARD | Step 1 → 2
+2026-06-07 18:35:38  [INFO    ]  NAVIGATION | BACK | Step 2 → 1
+2026-06-07 18:35:39  [INFO    ]  NAVIGATION | BACK | Step 1 → 0
+2026-06-07 18:47:27  [INFO    ]  SESSION START | MRN=2326 | Patient='Taki Dje'
+2026-06-07 18:47:27  [INFO    ]  NAVIGATION | FORWARD | Step 0 → 1
+2026-06-07 18:51:15  [INFO    ]  NAVIGATION | FORWARD | Step 1 → 2
+2026-06-07 18:52:31  [INFO    ]  NAVIGATION | BACK | Step 2 → 1
+2026-06-07 18:52:52  [INFO    ]  NAVIGATION | FORWARD | Step 1 → 2
+2026-06-07 18:52:58  [INFO    ]  NAVIGATION | BACK | Step 2 → 1
+2026-06-07 18:53:03  [INFO    ]  NAVIGATION | FORWARD | Step 1 → 2
+2026-06-07 18:53:05  [INFO    ]  NAVIGATION | BACK | Step 2 → 1
+2026-06-07 18:53:09  [INFO    ]  NAVIGATION | FORWARD | Step 1 → 2
+2026-06-07 18:53:11  [INFO    ]  NAVIGATION | BACK | Step 2 → 1
+2026-06-07 18:53:20  [INFO    ]  NAVIGATION | FORWARD | Step 1 → 2
+2026-06-07 18:58:56  [INFO    ]  WELLS_SCORE | MRN=2326 | Score=3.0 | RiskLevel='LOW RISK'
+2026-06-07 18:58:56  [INFO    ]  NAVIGATION | FORWARD | Step 2 → 3
+2026-06-07 18:58:56  [INFO    ]  RECOMMENDATION | MRN=2326 | Title='Order D-dimer (PERC rule or quantitative)' | Strength='MODERATE RECOMMENDATION'
+2026-06-07 19:01:18  [INFO    ]  PHYSICIAN_DECISION | MRN=2326 | Decision='Accept' | OverrideReason='' | Comments=''
+2026-06-07 19:01:25  [INFO    ]  PHYSICIAN_DECISION | MRN=2326 | Decision='Accept' | OverrideReason='' | Comments=''
+2026-06-07 19:01:32  [INFO    ]  PHYSICIAN_DECISION | MRN=2326 | Decision='Accept' | OverrideReason='' | Comments=''
+2026-06-07 19:05:24  [INFO    ]  DATABASE | SAVE | MRN=2326 | Risk=LOW RISK
+2026-06-07 19:05:24  [INFO    ]  DATABASE | ASSESSMENT_SAVED | MRN=2326
+2026-06-07 19:08:29  [INFO    ]  NAVIGATION | BACK | Step 3 → 0
