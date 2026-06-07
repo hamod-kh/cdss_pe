@@ -118,9 +118,7 @@ When you click **Next**, the following symptom fields are automatically mapped t
 <p align="center">
 <img src="Picture7.png" alt="Patient Selection6" width="500">
 </p>
-### Step 4: Wells Score
 
-**What it does:** Calculate the Wells Score from the seven clinical criteria and display the risk level.
 
 ### Wells Criteria
 
@@ -135,7 +133,7 @@ When you click **Next**, the following symptom fields are automatically mapped t
 <p align="center">
 <img src="Picture8.png" alt="Patient Selection7" width="500">
 </p>
-### Wells Score Results
+
 
 **Display features:**
 
