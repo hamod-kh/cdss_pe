@@ -28,3 +28,13 @@ The application follows a four-step assessment process:
   - 🟠 **MODERATE** (orange)
   - 🟢 **LOW** (green)
 - Click **View Patient History** to open the assessment history dialog for the selected patient.
+
+**Right panel::** Register New Patient
+<p align="center">
+<img src="Register_New_Patient.png" alt="Patient Selection1" width="700">
+</p>
+
+- Fill in MRN (required), First Name (required), Last Name (required), Age, Sex, and Triage level
+- Click Confirm & Start Assessment to begin
+- If the MRN already exists, the application will prompt you to load the existing record instead
+
