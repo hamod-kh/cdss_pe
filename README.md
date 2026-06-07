@@ -21,7 +21,7 @@ The application follows a four-step assessment process:
 <img src="Step1_Left panel.png" alt="Patient Selection" width="600">
 </p>
 
-**Instructions:**
+
 
 - Type a name or MRN in the search box to filter the patient table in real time.
 - Click a row to select a patient, then click Load Selected Patient or double-click the row to proceed.
@@ -37,7 +37,7 @@ The application follows a four-step assessment process:
 
 **What it does:** Search for existing patients or register a new one.
 
-**Instructions:**
+
 
 - Fill in MRN (required), First Name (required), Last Name (required), Age, Sex, and Triage level.
 - Click **Confirm & Start Assessment** to begin.
@@ -74,7 +74,6 @@ The application follows a four-step assessment process:
 </p>
 ### Left Panel: Vital Signs and Labs
 
-**Instructions:**
 
 - Enter vital signs: HR (bpm), BP (mmHg), RR (/min), SpO₂ (%), Temperature (°C).
 - Enter laboratory results: D-dimer (ng/mL), Troponin (ng/L), BNP (pg/mL), Creatinine (µmol/L).
@@ -91,7 +90,7 @@ The application follows a four-step assessment process:
 
 **What it does:** Enter the patient's clinical data including vitals, laboratory results, and symptoms.
 
-**Instructions:**
+
 
 - For each of the eight clinical items, select **Yes**, **No**, or **Unknown** using the tri-state button group.
 - Items include: dyspnea, pleuritic chest pain, hemoptysis, leg swelling, recent surgery or immobilization, prior DVT/PE, hormone therapy or pregnancy, active malignancy.
@@ -162,7 +161,6 @@ Click **Next →** to commit the score and proceed. The Wells score and risk lev
 <img src="Picture9.png" alt="Patient Selection8" width="500">
 </p>
 
-**Instructions:**
 
 - Displays the recommended next step, recommendation strength, clinical rationale, and a list of suggested actions.
 - Suggested actions are shown as checkboxes for the clinician to work through.
@@ -183,7 +181,7 @@ The following table summarizes the automated clinical decision logic based on th
 <p align="center">
 <img src="Picture10.png" alt="Patient Selection9" width="500">
 </p>
-**Instructions:**
+
 
 - Click ✓ **Accept Recommendation** to record agreement with the system recommendation.
 - Note: Once you click ✓ **Accept Recommendation**, the Override button is disabled for the current session. If you need to change your decision, click ← **Back** to return to the Wells Score page and then proceed forward again to reset the Recommendations page.
