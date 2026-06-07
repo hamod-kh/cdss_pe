@@ -53,9 +53,7 @@ The application follows a four-step assessment process:
 <p align="center">
 <img src="Patient_header.png" alt="Patient Selection2" width="500">
 </p>
-### Step 2: Data Entry
 
-**What it does:** Enter the patient's clinical data including vitals, laboratory results, and symptoms.
 
 **Patient header bar:**
 
@@ -72,7 +70,7 @@ The application follows a four-step assessment process:
 <p align="center">
 <img src="Picture5.png" alt="Patient Selection4" width="500">
 </p>
-### Left Panel: Vital Signs and Labs
+
 
 
 - Enter vital signs: HR (bpm), BP (mmHg), RR (/min), SpO₂ (%), Temperature (°C).
@@ -86,6 +84,7 @@ The application follows a four-step assessment process:
 <p align="center">
 <img src="Picture6.png" alt="Patient Selection5" width="500">
 </p>
+
 ### Step 3: Data Entry (Symptoms and Risk Factors)
 
 **What it does:** Enter the patient's clinical data including vitals, laboratory results, and symptoms.
