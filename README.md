@@ -41,3 +41,4 @@ The application follows a four-step assessment process:
 Step 2: Data Entry
 What it does: Enter the patient's clinical data including vitals, laboratory results, and symptoms.
 Patient header bar
+f
