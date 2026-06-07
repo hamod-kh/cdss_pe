@@ -151,6 +151,7 @@ When you click **Next**, the following symptom fields are automatically mapped t
 | ≤ 4.0      | LOW RISK       |
 | 4.5 – 6.0  | MODERATE RISK  |
 | > 6.0      | HIGH RISK      |
+
 Click **Next →** to commit the score and proceed. The Wells score and risk level are saved to the patient record at this point.
 
 ---
