@@ -32,3 +32,21 @@ The application follows a four-step assessment process:
 <p align="center">
 <img src="Register_New_Patient.png" alt="Patient Selection1" width="700">
 </p>
+
+### Step 1: Patient Selection
+
+**What it does:** Search for existing patients or register a new one.
+
+**Instructions:**
+
+- Fill in MRN (required), First Name (required), Last Name (required), Age, Sex, and Triage level.
+- Click **Confirm & Start Assessment** to begin.
+- If the MRN already exists, the application will prompt you to load the existing record instead.
+
+---
+
+## Step 2: Data Entry
+
+**What it does:** Enter the patient's clinical data including vitals, laboratory results, and symptoms.
+
+**Patient header bar**
