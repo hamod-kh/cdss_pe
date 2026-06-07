@@ -135,7 +135,6 @@ When you click **Next**, the following symptom fields are automatically mapped t
 </p>
 
 
-**Display features:**
 
 - A circular arc gauge displays the current score and risk level with color coding.
 - The breakdown table shows criteria total, adjustment, final Wells score, and risk classification.
