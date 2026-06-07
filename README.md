@@ -50,7 +50,6 @@ The application follows a four-step assessment process:
 </p>
 
 
-**Patient header bar:**
 
 - Displays the current patient's name, MRN, age, sex, and triage level.
 - Shows a color-coded PE risk badge based on any previously calculated Wells score.
@@ -80,9 +79,6 @@ The application follows a four-step assessment process:
 <img src="Picture6.png" alt="Patient Selection5" width="500">
 </p>
 
-### Step 3: Data Entry (Symptoms and Risk Factors)
-
-**What it does:** Enter the patient's clinical data including vitals, laboratory results, and symptoms.
 
 
 
@@ -113,7 +109,6 @@ When you click **Next**, the following symptom fields are automatically mapped t
 </p>
 
 
-### Wells Criteria
 
 - Seven criteria are displayed with their point values.
 - For each criterion, select **No**, **Yes**, or **Unknown**.
