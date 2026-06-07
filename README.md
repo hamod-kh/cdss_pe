@@ -33,11 +33,6 @@ The application follows a four-step assessment process:
 <img src="Register_New_Patient.png" alt="Patient Selection1" width="600">
 </p>
 
-### Step 1: Patient Selection
-
-**What it does:** Search for existing patients or register a new one.
-
-
 
 - Fill in MRN (required), First Name (required), Last Name (required), Age, Sex, and Triage level.
 - Click **Confirm & Start Assessment** to begin.
