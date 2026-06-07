@@ -25,3 +25,7 @@ The application follows a four-step assessment process:
 •	Click a row to select a patient, then click Load Selected Patient or double-click the row to proceed
 •	Risk levels in the table are color-coded: red for HIGH, orange for MODERATE, green for LOW
 •	Click View Patient History to open the assessment history dialog for the selected patient
+**right panel:** Register New Patient
+<p align="center">
+<img src="Register_New_Patient.png" alt="Patient Selection1" width="700">
+</p>
