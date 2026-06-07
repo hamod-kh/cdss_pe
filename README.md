@@ -50,3 +50,40 @@ The application follows a four-step assessment process:
 **What it does:** Enter the patient's clinical data including vitals, laboratory results, and symptoms.
 
 **Patient header bar**
+<p align="center">
+<img src="Patient_header.png" alt="Patient Selection2" width="700">
+</p>
+### Step 2: Data Entry
+
+**What it does:** Enter the patient's clinical data including vitals, laboratory results, and symptoms.
+
+**Patient header bar:**
+
+- Displays the current patient's name, MRN, age, sex, and triage level.
+- Shows a color-coded PE risk badge based on any previously calculated Wells score.
+- Triage level can be updated directly from this page via the dropdown.
+
+---
+
+### Left Panel: Vital Signs and Labs
+<p align="center">
+<img src="Picture4.png" alt="Patient Selection3" width="500">
+</p>
+<p align="center">
+<img src="Picture5.png" alt="Patient Selection4" width="500">
+</p>
+### Left Panel: Vital Signs and Labs
+
+**Instructions:**
+
+- Enter vital signs: HR (bpm), BP (mmHg), RR (/min), SpO₂ (%), Temperature (°C).
+- Enter laboratory results: D-dimer (ng/mL), Troponin (ng/L), BNP (pg/mL), Creatinine (µmol/L).
+- All fields only accept numeric input — letters and special characters are blocked.
+
+---
+
+### Right Panel: Symptoms and Risk Factors
+
+<p align="center">
+<img src="Picture6.png" alt="Patient Selection5" width="500">
+</p>
