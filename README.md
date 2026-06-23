@@ -59,7 +59,7 @@ The application follows a four-step assessment process:
 
 ### Left Panel: Vital Signs and Labs
 <p align="center">
-<img src="images/Picture5.png" alt="Patient Selection3" width="500">
+<img src="images/Picture4.png" alt="Patient Selection3" width="500">
 </p>
 <p align="center">
 <img src="images/Picture5.png" alt="Patient Selection4" width="500">
