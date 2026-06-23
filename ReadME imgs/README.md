@@ -18,7 +18,7 @@ The application follows a four-step assessment process:
 
 **Left panel:** Registered Patients
 <p align="center">
-<img src="Step1_Left panel.png" alt="Patient Selection" width="600">
+<img src="images/Step1_Left panel.png" alt="Patient Selection" width="600">
 </p>
 
 
@@ -30,7 +30,7 @@ The application follows a four-step assessment process:
 
 **Right panel:** Register New Patient
 <p align="center">
-<img src="Register_New_Patient.png" alt="Patient Selection1" width="600">
+<img src="images/Register_New_Patient.png" alt="Patient Selection1" width="600">
 </p>
 
 
@@ -46,7 +46,7 @@ The application follows a four-step assessment process:
 
 **Patient header bar**
 <p align="center">
-<img src="Patient_header.png" alt="Patient Selection2" width="500">
+<img src="images/Patient_header.png" alt="Patient Selection2" width="500">
 </p>
 
 
@@ -59,10 +59,10 @@ The application follows a four-step assessment process:
 
 ### Left Panel: Vital Signs and Labs
 <p align="center">
-<img src="Picture4.png" alt="Patient Selection3" width="500">
+<img src="images/Picture4.png" alt="Patient Selection3" width="500">
 </p>
 <p align="center">
-<img src="Picture5.png" alt="Patient Selection4" width="500">
+<img src="images/Picture5.png" alt="Patient Selection4" width="500">
 </p>
 
 
@@ -76,7 +76,7 @@ The application follows a four-step assessment process:
 ### Right Panel: Symptoms and Risk Factors
 
 <p align="center">
-<img src="Picture6.png" alt="Patient Selection5" width="500">
+<img src="images/Picture6.png" alt="Patient Selection5" width="500">
 </p>
 
 
@@ -105,7 +105,7 @@ When you click **Next**, the following symptom fields are automatically mapped t
 
 ### Left Panel: Wells Criteria
 <p align="center">
-<img src="Picture7.png" alt="Patient Selection6" width="500">
+<img src="images/Picture7.png" alt="Patient Selection6" width="500">
 </p>
 
 
@@ -119,7 +119,7 @@ When you click **Next**, the following symptom fields are automatically mapped t
 
 ### Right Panel: Score Breakdown
 <p align="center">
-<img src="Picture8.png" alt="Patient Selection7" width="500">
+<img src="images/Picture8.png" alt="Patient Selection7" width="500">
 </p>
 
 
@@ -147,7 +147,7 @@ Click **Next →** to commit the score and proceed. The Wells score and risk lev
 
 ### Left Panel: Recommendation
 <p align="center">
-<img src="Picture9.png" alt="Patient Selection8" width="500">
+<img src="images/Picture9.png" alt="Patient Selection8" width="500">
 </p>
 
 
@@ -168,7 +168,7 @@ The following table summarizes the automated clinical decision logic based on th
 
 **Right Panel:** Plan Decision
 <p align="center">
-<img src="Picture10.png" alt="Patient Selection9" width="500">
+<img src="images/Picture10.png" alt="Patient Selection9" width="500">
 </p>
 
 
@@ -180,9 +180,9 @@ The following table summarizes the automated clinical decision logic based on th
 
 The system validates that a decision has been made and, if overriding, that a reason has been selected.
 <p align="center">
-<img src="Picture11.png" alt="Patient Selection10" width="500">
+<img src="images/Picture11.png" alt="Patient Selection10" width="500">
 </p>
 - On success, a confirmation dialog shows the saved score and recommendation, and the application returns to the patient selection page.
 <p align="center">
-<img src="Picture12.png" alt="Patient Selection11" width="500">
+<img src="images/Picture12.png" alt="Patient Selection11" width="500">
 </p>
